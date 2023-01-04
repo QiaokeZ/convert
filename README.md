@@ -55,7 +55,7 @@ public class Main {
         whitelist.add("z");
 
         Options options = Options.builder()
-                .outputPattern(Options.OutputPattern.whitelist(whitelist))
+                .whitelist(whitelist)
                 .mapping(mapping)
                 .build();
         Vo vo1 = Converter.convert(entity, Vo.class, options);

@@ -34,35 +34,6 @@ public class Options {
         return new Builder();
     }
 
-    public static final class OutputPattern {
-
-        Set<String> blacklist;
-        Set<String> whitelist;
-
-        private OutputPattern() {
-        }
-
-        public static OutputPattern blacklist(Set<String> blacklist) {
-            OutputPattern outputPattern = new OutputPattern();
-            outputPattern.setBlacklist(blacklist);
-            return outputPattern;
-        }
-
-        public static OutputPattern whitelist(Set<String> whitelist) {
-            OutputPattern outputPattern = new OutputPattern();
-            outputPattern.setWhitelist(whitelist);
-            return outputPattern;
-        }
-
-        private void setBlacklist(Set<String> blacklist) {
-            this.blacklist = blacklist;
-        }
-
-        private void setWhitelist(Set<String> whitelist) {
-            this.whitelist = whitelist;
-        }
-    }
-
     public static final class Builder {
 
         Set<String> whitelist;
@@ -70,9 +41,15 @@ public class Options {
 
         Map<String, String> mapping = new HashMap<>();
 
-        public Builder outputPattern(OutputPattern outputPattern) {
-            this.whitelist = outputPattern.whitelist;
-            this.blacklist = outputPattern.blacklist;
+        public Builder whitelist(Set<String> whitelist) {
+            this.whitelist = whitelist;
+            this.blacklist = null;
+            return this;
+        }
+
+        public Builder blacklist(Set<String> blacklist) {
+            this.blacklist = blacklist;
+            this.whitelist = null;
             return this;
         }
 
